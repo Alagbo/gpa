@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPA calculator</title>
+    <style>
+      body{
+        text-align: center;
+      }
+      .calculate{
+       width: 40%;
+        padding: 20px;
+        margin: auto;
+        background-image: url(4.0.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        border-radius:  10px; 
+        box-shadow: #4f7e8e 3px 3px 0;
+      }
+
+      h2{
+        font-family: 'Courier New', Courier, monospace;
+        text-shadow: 3px 0 white;
+        color:red;
+        
+      }
+      input{
+        width: 70%;
+        margin: 5px;
+        outline-color: bisque;
+        background-color: bisque;
+        height: 30px;
+        padding: 5px;
+        border: solid wheat 0;
+        
+      }
+      button{
+        width: 40%;
+        background-color: black;
+        padding: 10px;
+        border-radius: 20px;
+        border: white solid 0;
+        color: white;
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: 600;
+         box-shadow: #4f7e8e 3px 2px 0;
+         text-transform: uppercase;
+         width: 40%;
+      }
+      li{
+        list-style: none;
+        text-align: center;
+        margin-right: 40px;
+        /* color: aquamarine; */
+        font-weight: 500;
+      }
+      .user-details{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        color: white;
+        font-weight: bolder;
+      }
+      .click{
+        box-shadow: 0 3px 4px 0 #4f7e8e;
+        opacity: 0.5;
+      }
+/* for switch  */
+ .switch{
+            position: absolute;
+            /* left: 128px;
+            top: 20px; */
+            width: 60px;
+            height: 34px;
+            display: inline-block;
+        }
+        .switch .change{
+            /* opacity: 0; */
+            width: 0;
+            height: 0;
+        }
+        .slider{
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 34px;
+        }
+        .slider::before{
+            position: absolute;
+            content: "";
+            height: 24px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+        .change:checked + .slider{
+            background-color: skyblue;
+        }
+        .change:checked + .slider::before{
+            transform: translateX(26px);
+        }
+        .switch-container{
+          background-color: #4f7e8e;
+          width: 250px;
+          border-radius: 50px;
+          padding: 10px;
+          height: 40px;
+          margin: auto;
+          color: white;
+          text-transform: uppercase;
+          font-weight: 900;
+          position: relative;
+          top: 10px;
+         
+        }
+        /* footer */
+        footer{
+          margin: 5px;
+          padding: 5px;
+          font-style: italic;
+        }
+
+ /* for second half  */
+ .gpa_switch_display{
+  display: none;
+ }
+ .gpa_switch{
+  width: 40%;     
+  background-image: url('./5.0.jpg');
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: cover;
+        padding: 20px;
+        margin: auto;
+        border-radius:  10px; 
+        box-shadow: #4f7e8e 3px 3px 0;
+ }
+      /* responsive */
+      @media (max-width:600px) {
+        body{
+         margin: 0px;
+         padding: 0px;
+        
+        }
+        .gpa_switch{
+          width: 50%;
+          /* background-color: aquamarine; */
+           /* background-color: skyblue; */
+           background-position: 10%;
+           background-size: 100% 100%;
+           /* background-repeat: repeat; */
+        }
+        .calculate{
+          width: 50%;
+           background-color: skyblue;
+            background-size: 100% 100%;
+        }
+        .title{
+          margin: 10px;
+        }
+
+        input{
+          width: 60%;
+          margin: 5px;
+        }
+        .user-details{
+          text-align: center;
+          font-family: 'Courier New', Courier, monospace;
+        
+        }
+        h2{
+          text-shadow: 4px 0 black;
+          text-transform: uppercase;
+          color: red;
+        }
+        div p{
+          font-weight: bold;
+          font-style: italic;
+        }
+        
+      }
+    </style>
+</head>
+<body>
+  <!-- calculator reset -->
+  <div>
+    <button id="refresh">Reset the calculator</button>
+  </div>
+   <div class="calculate">
+    <div class="top-item">
+      <h2 class="title">calculate your GPA (4.0) scale⚖⚖</h2>
+       <!-- <label title="switch to 5.00" class="switch">
+    <input type="checkbox" id="toggle" class="change">
+    <span class="slider"></span>
+  </label> -->
+    </div>
+    <input type="text" id="input_course" placeholder="Course Code ">
+    <input type="number" id="input_score" placeholder="Score (0 - 100)">
+    <input type="number" id="input_unit" placeholder="Course Unit">
+    
+    
+    <button class="add_details">add details</button>
+
+    <div class="user-details">
+       <div class="course">
+         <p>Course Code</p>
+         <ul id="cusa"></ul>
+       </div>
+
+       <div class="total">
+         <p>Total Score</p>
+         <ul id="score"></ul>
+       </div>
+
+       <div class="unit">
+         <p>Course Unit</p>
+         <ul id="unit"></ul>
+       </div>
+
+       <div>
+         <p class="grade">G.P</p>
+         <ul id="grade"></ul>
+       </div>
+    </div>
+
+    <!-- <p class="add">calculate GPA</p> -->
+
+    <!-- GPA RESULT -->
+    <h2>Your GPA is : <span id="gpa_value">0.00</span></h2>
+</div>
+
+
+<!-- second-half -->
+
+ <div class="gpa_switch gpa_switch_display">
+    <div class="top-item">
+       <h2 class="title">calculate your GPA (5.0) scale⚖⚖</h2>
+       <!-- <label title="switch to 4.00" class="switch">
+    <input type="checkbox" id="toggle" class="change">
+    <span class="slider"></span>
+  </label> -->
+    </div>
+     
+
+    <input type="text" id="input_course2" placeholder="Course Code ">
+    <input type="number" id="input_score2" placeholder="Score(0 - 100)">
+    <input type="number" id="input_unit2" placeholder="Course Unit">
+    
+    
+    <button class="add_details2">add details</button>
+
+    <div class="user-details">
+       <div class="course">
+         <p>Course Code</p>
+         <ul id="cusa2"></ul>
+       </div>
+
+       <div class="total">
+         <p>Total Score</p>
+         <ul id="score2"></ul>
+       </div>
+
+       <div class="unit">
+         <p>Course Unit</p>
+         <ul id="unit2"></ul>
+       </div>
+
+       <div>
+         <p class="grade">G.P</p>
+         <ul id="grade2"></ul>
+       </div>
+    </div>
+
+    <!-- <p class="add">calculate GPA</p> -->
+
+    <!-- GPA RESULT -->
+    <h2>Your GPA is : <span id="gpa_value2">0.00</span></h2>
+    <h2>YOur GPA in 4.0 scale is : <span id="gpa-value3"> 0.00</span></h2>
+</div>
+
+<!-- for switch -->
+<div class="switch-container">
+  <span>switch</span>
+    <label title="switch to 5.00" class="switch">
+    <input type="checkbox" id="toggle" class="change">
+    <span class="slider"></span>
+  </label>
+</div>
+<!-- footer  -->
+ <footer>
+  <p>copyright @Waliyur-Roheem2025</p>
+ </footer>
+    
+ <script src="gpa.js"></script>
+</body>
+</html>
